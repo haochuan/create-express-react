@@ -20,8 +20,8 @@ app.use(compression());
 app.use(logger('tiny'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-// serve static files
-//app.use('/static', express.static(path.join(__dirname, '../static')));
+// serve static files, this is for frontend React
+app.use(express.static('public'));
 
 /*=====  End of Middleware  ======*/
 
@@ -48,7 +48,7 @@ app.use('/page', routes.page);
 // Load React App
 if (env.name === 'production') {
   app.get('*', function response(req, res) {
-    res.sendFile(path.resolve(__dirname, 'react', 'index.html'));
+    res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
   });
 }
 
