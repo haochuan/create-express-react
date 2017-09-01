@@ -11,11 +11,11 @@ Get started with [create-react-app](https://github.com/facebookincubator/create-
 - [Eslint](https://eslint.org/) for both frontend and backend
 - [Jest](https://facebook.github.io/jest/) for both frontend and backend
 
-### Prerequisites
+## Prerequisites
 
-- [Node.js](https://nodejs.org/en/), from v0.12.x to the latest version. Using any version of v6.x.x or above is prefered.
+- [Node.js](https://nodejs.org/en/), from v0.12.x to the latest version. Using any version of v6.x.x or above is preferred.
 
-### Installing
+## Installing
 
 First of all, you should install `create-express-react` via npm as a global package, this is the CLI to generate the template for you to get started.
 
@@ -38,42 +38,66 @@ npm install
 npm run setup
 ```
 
-Finally you can start your app:
+Finally, you can start your app:
 
 ```
 npm start
 ```
 
 
-## Running the tests
+## Scripts
 
-Explain how to run the automated tests for this system
+There are a lot of pre-written npm scripts to help you speed up the development and deployment process.
 
-### Break down into end to end tests
+- `npm run setup`
 
-Explain what these tests test and why
+Using official `create-react-app` to generate a folder `root/frontend` for all frontend development. Also adding the proxy setting in `root/frontend/package.json` to pass request to express server.
 
-```
-Give an example
-```
+- `npm run start`   
 
-### And coding style tests
+Concurrently starting webpack-dev-server for react running on port `3000`, and express backend server on port `4000`. HOC will be enabled for all react related code and also the server will be restarted by [nodemon](https://github.com/remy/nodemon) if there is any change made for the backend code.
 
-Explain what these tests test and why
+- `npm run test-server`  
 
-```
-Give an example
-```
+Running server tests via Jest, which are in `root/server/__test__`
 
-## Deployment
+- `npm run test-react`   
 
-Add additional notes about how to deploy this on a live system
+Running react tests via Jest. There is no test file by default, you may create a folder `/root/frontend/__test__` and put all test files there.
 
-## Built With
+- `npm run lint`
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+Run ESLint on all backend code. The config files can be found in `root/.eslintrc` and `root/.eslintignore`. __Please note that the linting for react will be auto-enabled when you run `npm run start`__
+
+- `npm run build`
+
+Build all the server side code into `root/dist`, then build react and move all built files (index.html, javascript, css, images, etc.) to `root/dist/public` for production 
+
+- `npm run deploy`
+
+Deploy the server via pm2, you can find the config file in `root/deploy.json`.
+
+__There are also some helper npm scripts, see more details in `root/package.json`.__
+
+## Communication
+
+### Dev
+For Development, the webpack-dev-server is running on port 3000 serving react app, and the backend express server is running on port 4000. All of the requests sent by frontend app will be passed to express server via proxy.
+
+Web App <--- Webpack-dev-server <---> Proxy <---> Express Server
+
+### Production
+For Production, all the frontend code will be compiled and moved into a static directory inside express server. Now there is just one express server running, which is serving both the frontend app and backend endpoints.
+
+Endpoints <--- Express Server ---> Web App
+
+## Project Structure
+TBD
+
+## TODO
+- Should we put some of the common used react libraries into `root/frontend`?
+- Need to discuss the details about how to stucture express code.
+
 
 ## Contributing
 
@@ -85,17 +109,10 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+* **Haochuan Liu** - *Initial work* - [_haochuan](https://haochuan.io)
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License.
 
-## Acknowledgments
-
-* Hat tip to anyone who's code was used
-* Inspiration
-* etc
 
