@@ -3,15 +3,17 @@
   "version": "1.0.0",
   "description": "create template for create-react-app and express",
   "scripts": {
-    "init": "create-react-app frontend && npm run addProxy",
+    "setup": "create-react-app frontend && npm run addProxy",
+    "start": "concurrently \"npm run dev\" \"npm run react\"",
     "test": "jest --verbose",
     "test:watch": "npm test -- --watch",
     "lint": "eslint ./server/**/*.js",
-    "dev": "NODE_ENV=dev nodemon ./server/index.js --exec babel-node --presets es2015,stage-2 --ignore ./server/__test__/* --ignore ./frontend/*",
     "build": "rm -rf dist && npm run buildServer && npm run buildReact",
+    "deploy": "pm2 start deploy.json",
+    "dev": "NODE_ENV=dev nodemon -e js ./server/index.js --exec babel-node --presets es2015,stage-2 --ignore ./server/__test__/ --ignore ./frontend/ --ignore ./scripts/",
     "buildServer": "babel ./server -s -D -d dist",
     "buildReact": "cd frontend && npm run build && mv build ../dist/public",
-    "deploy": "pm2 start deploy.json",
+    "react": "node ./scripts/reactDev",
     "addProxy": "babel-node ./scripts/addProxy"
   },
   "keywords": [
@@ -24,7 +26,6 @@
   ],
   "author": "Haochuan Liu<haochuan.liu@gmail.com>(https://haochuan.io)",
   "license": "MIT",
-
   "dependencies": {
     "body-parser": "^1.17.2",
     "compression": "^1.7.0",
@@ -34,16 +35,20 @@
     "serve-favicon": "^2.4.3"
   },
   "devDependencies": {
-    "create-react-app": "^1.3.3",
-    "react-script": "^2.0.5",
     "babel-cli": "^6.24.1",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "concurrently": "^3.5.0",
+    "create-react-app": "^1.3.3",
     "eslint": "^4.3.0",
-    "jest": "^20.0.4"
+    "jest": "^20.0.4",
+    "react-script": "^2.0.5"
   },
   "jest": {
     "verbose": true,
-    "testPathIgnorePatterns": ["/node_modules/", "frontend"]
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "frontend"
+    ]
   }
 }
