@@ -2,6 +2,7 @@
  * Add proxy to express server after create-react-app completes
  */
 import fs from 'fs';
+const chalk = require('chalk');
 
 fs.readFile('./frontend/package.json', 'utf8', (err, data) => {
   if (err) throw err;
@@ -13,7 +14,9 @@ fs.readFile('./frontend/package.json', 'utf8', (err, data) => {
     'utf8',
     (err, data) => {
       if (err) throw err;
-      console.log('Express proxy has been added to create-react-app.');
+      console.log(
+        chalk.yellow('Express proxy has been added to create-react-app.')
+      );
     }
   );
 });

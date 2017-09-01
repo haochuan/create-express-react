@@ -5,8 +5,8 @@
   "scripts": {
     "setup": "create-react-app frontend && npm run addProxy",
     "start": "concurrently \"npm run dev\" \"npm run react\"",
-    "test": "jest --verbose",
-    "test:watch": "npm test -- --watch",
+    "test-server": "jest",
+    "test-react": "cd frontend && npm test",
     "lint": "eslint ./server/**/*.js",
     "build": "rm -rf dist && npm run buildServer && npm run buildReact",
     "deploy": "pm2 start deploy.json",
@@ -14,7 +14,7 @@
     "buildServer": "babel ./server -s -D -d dist",
     "buildReact": "cd frontend && npm run build && mv build ../dist/public",
     "react": "node ./scripts/reactDev",
-    "addProxy": "babel-node ./scripts/addProxy"
+    "addProxy": "node ./scripts/addProxy"
   },
   "keywords": [
     "react",
@@ -38,6 +38,7 @@
     "babel-cli": "^6.24.1",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "chalk": "^2.1.0",
     "concurrently": "^3.5.0",
     "create-react-app": "^1.3.3",
     "eslint": "^4.3.0",
@@ -48,7 +49,8 @@
     "verbose": true,
     "testPathIgnorePatterns": [
       "/node_modules/",
-      "frontend"
+      "frontend",
+      "dist"
     ]
   }
 }
