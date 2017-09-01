@@ -1,12 +1,32 @@
 {
   "name": "create-express-react",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "description": "create template for create-react-app and express",
+  "keywords": [
+    "react",
+    "express",
+    "javascript",
+    "full-stack",
+    "template",
+    "node"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/haochuan/create-express-react.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "author": "Haochuan Liu<haochuan.liu@gmail.com>(https://haochuan.io)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/haochuan/create-express-react/issues"
+  },
+  "bin": {
+    "create-express-react": "./bin/create-express-react.js"
+  },
+  "homepage": "https://github.com/haochuan/create-express-react#readme",
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "chalk": "^2.1.0",
+    "commander": "^2.11.0",
+    "fs-extra": "^4.0.1"
+  }
 }

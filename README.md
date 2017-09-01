@@ -55,7 +55,7 @@ Using official `create-react-app` to generate a folder `root/frontend` for all f
 
 - `npm run start`   
 
-Concurrently starting webpack-dev-server for react running on port `3000`, and express backend server on port `3001`. HOC will be enabled for all react related code and also the server will be restarted by [nodemon](https://github.com/remy/nodemon) if there is any change made for the backend code.
+Concurrently starting webpack-dev-server for react running on port `3000`, and express backend server on port `4000`. HOC will be enabled for all react related code and also the server will be restarted by [nodemon](https://github.com/remy/nodemon) if there is any change made for the backend code.
 
 - `npm run test-server`  
 
@@ -82,7 +82,7 @@ __There are also some helper npm scripts, see more details in `root/package.json
 ## Communication
 
 ### Dev
-For Development, the webpack-dev-server is running on port 3000 serving react app, and the backend express server is running on port 3001. All of the requests sent by frontend app will be passed to express server via proxy.
+For Development, the webpack-dev-server is running on port 3000 serving react app, and the backend express server is running on port 4000. All of the requests sent by frontend app will be passed to express server via proxy.
 
 Web App <--- Webpack-dev-server <---> Proxy <---> Express Server
 

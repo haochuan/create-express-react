@@ -4,7 +4,7 @@
   "description": "create template for create-react-app and express",
   "scripts": {
     "setup": "create-react-app frontend && npm run addProxy",
-    "start": "concurrently \"npm run dev\" \"npm run react\"",
+    "start": "concurrently -k \"npm run dev\" \"npm run react\"",
     "test-server": "jest",
     "test-react": "cd frontend && npm test",
     "lint": "eslint ./server/**/*.js",
