@@ -1,5 +1,5 @@
 
-# create-express-react
+# create-express-react [![Build Status](https://travis-ci.org/tombell/travis-ci-status.svg)](https://travis-ci.org/haochuan/create-express-react.svg?branch=master)
 
 Get started with [create-react-app](https://github.com/facebookincubator/create-react-app) and your own [express](https://expressjs.com/) server for development and production.
 
