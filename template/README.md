@@ -44,6 +44,42 @@ Finally, you can start your app:
 npm start
 ```
 
+To install ANTD
+
+``` 
+cd frontend
+```
+
+```
+npm install react-app-rewired --save-dev
+```
+
+Replace start, build, test scripts with:
+```
+"start": "react-app-rewired start",
+"build": "react-app-rewired build",
+"test": "react-app-rewired test --env=jsdom",
+```
+
+inside frontend folder:
+```
+touch config-overrides.js
+```
+
+add code:
+```
+const { injectBabelPlugin } = require("react-app-rewired");
+
+module.exports = function override(config, env) {
+	config = injectBabelPlugin(
+		["import", { libraryName: "antd", style: "css" }],
+		config
+	);
+	return config;
+};
+```
+
+And you are all set for modular import of ANTD, follow the docs and add LocaleProvider for EN
 
 ## Scripts
 
