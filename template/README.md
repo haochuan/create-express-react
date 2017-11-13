@@ -46,6 +46,12 @@ npm start
 
 To install ANTD
 
+in project root:
+```
+npm install antd --save
+npm install babel-plugin-import --save-dev
+```
+
 ``` 
 cd frontend
 ```
@@ -54,7 +60,14 @@ cd frontend
 npm install react-app-rewired --save-dev
 ```
 
-Replace start, build, test scripts with:
+Replace
+```
+"start": "react-scripts start",
+"build": "react-scripts build",
+"test": "react-scripts test --env=jsdom",
+```
+
+With:
 ```
 "start": "react-app-rewired start",
 "build": "react-app-rewired build",
@@ -79,7 +92,24 @@ module.exports = function override(config, env) {
 };
 ```
 
-And you are all set for modular import of ANTD, follow the docs and add LocaleProvider for EN
+You are all set for modular import of ANTD, follow the docs and add LocaleProvider for EN
+
+Go back to your project root and you can run as usual with
+```
+npm start
+```
+
+If you encounter an error:
+```
+ Error: Cannot find module 'react-scripts/package.json'
+```
+
+fix with:
+
+```
+cd frontend
+npm install
+```
 
 ## Scripts
 
