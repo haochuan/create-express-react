@@ -43,9 +43,7 @@ Finally, you can start your app:
 npm start
 ```
 
-## How to touch webpack config inside `create-react-app`
-
-For example to install ANTD
+To install ANTD
 
 in project root:
 ```
