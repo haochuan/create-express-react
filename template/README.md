@@ -1,4 +1,3 @@
-
 # create-express-react
 
 Get started with [create-react-app](https://github.com/facebookincubator/create-react-app) and your own [express](https://expressjs.com/) server for development and production.
@@ -44,6 +43,74 @@ Finally, you can start your app:
 npm start
 ```
 
+## How to touch webpack config inside `create-react-app`
+
+For example to install ANTD
+
+in project root:
+```
+npm install antd --save
+npm install babel-plugin-import --save-dev
+```
+
+``` 
+cd frontend
+```
+
+```
+npm install react-app-rewired --save-dev
+```
+
+Replace
+```
+"start": "react-scripts start",
+"build": "react-scripts build",
+"test": "react-scripts test --env=jsdom",
+```
+
+With:
+```
+"start": "react-app-rewired start",
+"build": "react-app-rewired build",
+"test": "react-app-rewired test --env=jsdom",
+```
+
+inside frontend folder:
+```
+touch config-overrides.js
+```
+
+add code:
+```
+const { injectBabelPlugin } = require("react-app-rewired");
+
+module.exports = function override(config, env) {
+	config = injectBabelPlugin(
+		["import", { libraryName: "antd", style: "css" }],
+		config
+	);
+	return config;
+};
+```
+
+You are all set for modular import of ANTD, follow the docs and add LocaleProvider for EN
+
+Go back to your project root and you can run as usual with
+```
+npm start
+```
+
+If you encounter an error:
+```
+ Error: Cannot find module 'react-scripts/package.json'
+```
+
+fix with:
+
+```
+cd frontend
+npm install
+``` 
 
 ## Scripts
 
