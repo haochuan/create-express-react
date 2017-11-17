@@ -5,9 +5,9 @@
  */
 
 import api_v1 from './api_v1';
-import page from './page';
+import user from './user';
 
 export default {
   api_v1,
-  page
+  user
 };

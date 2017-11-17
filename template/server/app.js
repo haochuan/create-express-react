@@ -43,7 +43,7 @@ app.use('/static', express.static(path.join(__dirname, 'public', 'static')));
 
 // Routes
 app.use('/api/v1', routes.api_v1);
-app.use('/page', routes.page);
+app.use('/users', routes.user);
 
 // Load React App
 // Serve HTML file for production

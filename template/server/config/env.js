@@ -9,8 +9,8 @@ const env = {
     name: 'production',
     port: 4000
   },
-  dev: {
-    name: 'dev',
+  development: {
+    name: 'development',
     port: 4000
   },
   test: {

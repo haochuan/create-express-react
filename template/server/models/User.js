@@ -1,20 +1,14 @@
 /**
  *
- * Example User model for mongodb
+ * Example User model for sequelize
  *
  */
 
-/*
- * 
- * import mongoose from 'mongoose';
- * const Schema = mongoose.Schema;
- *
- * let UserSchema = new Schema({
- *   email: {type: String, required: true, unique: true, dropDups: true},
- *   password: {type: String, required: true},
- *   created_at: {type: Date, default: Date.now},
- *   updated_at: {type: Date},
- *   deleted_at: {type: Date}
- * });
- * export default mongoose.model('User', UserSchema);
- */
+import sequelize from 'sequelize';
+
+export default (sequelize, DataTypes) => {
+  var User = sequelize.define('User', {
+    username: DataTypes.STRING
+  });
+  return User;
+};
