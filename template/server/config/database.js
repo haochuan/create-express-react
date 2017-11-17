@@ -1,11 +1,11 @@
 /**
  *
  * Database Config
- * Examples:
  */
 
 /*
- * MongoDB
+ * MongoDB Examples
+ * You need to install mongoose yourself first!
  * import mongoose from 'mongoose';
  * import env from './env';
  * const dbHost = {
@@ -18,33 +18,38 @@
 
 /*
  * Mysql
- * import mysql from 'mysql';
- * import env from './env';
- * const settings = {
- *  dev: {
- *    host: 'xxxx',
- *    user: 'xxxx',
- *    database: 'xxxxx'
- *  },
- *  production: {
- *    host: 'xxxx',
- *    user: 'xxxx',
- *    database: 'xxxxx'
- *  }
- * };
- * const pool = mysql.createPool(settings[env.name]);
- * const getMysqlConnection = (cb) {
- *  pool.getConnection((err, connection) => {
- *    if (err) throw err;
- *    cb(connection);
- *  });
+ * sequelize.js and mysql2 are already in package.json.
+ * It's better to add the mysql connection info in ./env and the import the info here to use
+ * For exmaple, env.database should be something like:
+ * {
+ *   host: 'xxx',
+ *   database: 'xxx',
+ *   user: 'xxx',
+ *   password: 'xxxx',
+ *   port: 'xxx'
  * }
- * export default getMysqlConnection;
  */
 
-/*
- * Or you can also use ORM:
- *
- *  - Bookshelf.js
- *  - Sequelize.js
- */
+import Sequelize from 'sequelize';
+import env from './env';
+
+const sequelize = new Sequelize(env.database, {
+  host: env.database.host,
+  dialect: 'mysql',
+  pool: {
+    max: 5,
+    min: 0,
+    acquire: 30000,
+    idle: 10000
+  }
+});
+
+// init connection
+sequelize
+  .authenticate()
+  .then(() => {
+    console.log('Mysql connection has been established successfully.');
+  })
+  .catch(err => {
+    console.error('Unable to connect to the mysql:', err);
+  });
